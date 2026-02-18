@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="mr" data-theme="light" data-font-size="medium">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Navodaya & Class 4 Prep | नवोदय तयारी</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-logo">
+                <span class="logo-icon">🚀</span>
+                <span>Navodaya Prep</span>
+            </div>
+            <div class="header-actions">
+                <button class="theme-toggle" aria-label="Toggle Theme">🌙</button>
+                <button class="font-btn" id="font-btn">AA</button>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+
+            <!-- Smart Hub (New Home) -->
+            <section id="smart-hub" class="page-section active">
+                <!-- Content rendered by app.js -->
+            </section>
+
+            <!-- Class 4 Section -->
+            <section id="class4" class="page-section">
+                <!-- Content rendered by app.js -->
+            </section>
+
+            <!-- Daily Plan -->
+            <section id="daily-plan" class="page-section">
+                <h2 class="mb-4">📅 7-Day Study Plan</h2>
+                <div id="plan-tabs" class="day-tabs"></div>
+                <div id="plan-tasks"></div>
+            </section>
+
+            <!-- Topics (Navodaya) -->
+            <section id="topics" class="page-section">
+                <h2 class="mb-4">📚 Navodaya Topics</h2>
+                <div id="topics-grid"></div>
+                <div id="lessons-container"></div>
+            </section>
+
+            <!-- Teacher's Papers -->
+            <section id="teacher-papers" class="page-section">
+                <!-- Content rendered by app.js -->
+            </section>
+
+            <!-- Quizzes & Tests -->
+            <section id="quizzes" class="page-section">
+                <h2 class="mb-4">🧠 Quick Practice Quizzes</h2>
+                <div id="quiz-list"></div>
+            </section>
+
+            <section id="mock-tests" class="page-section">
+                <h2 class="mb-4">🎯 Full Mock Tests</h2>
+                <div id="mock-list"></div>
+            </section>
+
+            <!-- Progress -->
+            <section id="progress" class="page-section">
+                <h2 class="mb-4">📈 My Progress</h2>
+                <!-- Content rendered by app.js -->
+            </section>
+
+            <!-- Settings/About -->
+            <section id="settings" class="page-section">
+                <h2>⚙️ Settings</h2>
+                <div class="card">
+                    <p>Theme: <span id="current-theme">Light</span></p>
+                    <p>Language: Marathi (Primary)</p>
+                    <p>Version: 2.0 (Class 4 + Navodaya)</p>
+                </div>
+            </section>
+
+            <!-- YouTube Embed Container -->
+            <section id="youtube" class="page-section">
+                <h2>📺 Video Lesson</h2>
+                <div class="card">
+                    <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
+                        <iframe id="video-frame"
+                            style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;" src=""
+                            allowfullscreen></iframe>
+                    </div>
+                    <h3 id="video-title" class="mt-2">Select a video from Topics</h3>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="#smart-hub" class="nav-item active">
+                <span class="nav-icon">🏠</span>
+                <span>Home</span>
+            </a>
+            <a href="#class4" class="nav-item">
+                <span class="nav-icon">📚</span>
+                <span>Class 4</span>
+            </a>
+            <a href="#topics" class="nav-item">
+                <span class="nav-icon">📖</span>
+                <span>Navodaya</span>
+            </a>
+            <a href="#quizzes" class="nav-item">
+                <span class="nav-icon">🧠</span>
+                <span>Quiz</span>
+            </a>
+            <a href="#progress" class="nav-item">
+                <span class="nav-icon">📈</span>
+                <span>Progress</span>
+            </a>
+            <!-- More Menu Trigger -->
+            <button class="nav-item" data-action="more">
+                <span class="nav-icon">☰</span>
+                <span>More</span>
+            </button>
+        </nav>
+
+        <!-- More Menu Dropdown -->
+        <div id="more-menu" class="more-menu">
+            <button class="more-menu-item" onclick="location.hash='#daily-plan'">📅 Daily Plan</button>
+            <button class="more-menu-item" onclick="location.hash='#teacher-papers'">📄 Teacher Papers</button>
+            <button class="more-menu-item" onclick="location.hash='#mock-tests'">🎯 Mock Tests</button>
+            <button class="more-menu-item" onclick="location.hash='#settings'">⚙️ Settings</button>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/progress.js"></script>
+    <script src="js/quiz-engine.js"></script>
+    <script src="js/gpt.js"></script> <!-- Kept for valid reference if needed, though replaced by Yupp link -->
+    <script src="js/app.js"></script>
+</body>
+
+</html>
