@@ -2745,7 +2745,917 @@ a:hover {
         font-size: 1.5rem;
     }
 
+
     .pl-hero-title {
         font-size: 1.15rem;
     }
+}
+
+/* ============================================================
+   MASCOT SYSTEM — Ollie the Owl
+   ============================================================ */
+
+/* Confetti */
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(-20px) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+.confetti-piece {
+    position: fixed;
+    top: -10px;
+    z-index: 9999;
+    pointer-events: none;
+    animation: confetti-fall linear forwards;
+}
+
+/* Toast */
+.mascot-toast {
+    position: fixed;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%) translateY(30px);
+    background: #1e1b4b;
+    color: #fff;
+    padding: 0.7rem 1.4rem;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    font-family: var(--font-mr);
+    font-weight: 700;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    z-index: 9000;
+    opacity: 0;
+    transition: all 0.35s ease;
+    white-space: nowrap;
+    max-width: 92vw;
+}
+
+.mascot-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Mascot Container */
+.mascot-row {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    background: linear-gradient(135deg, #ede9fe 0%, #dbeafe 100%);
+    border-radius: var(--radius);
+    padding: 1rem 1.2rem;
+    margin-bottom: 0.9rem;
+    cursor: pointer;
+}
+
+[data-theme="dark"] .mascot-row {
+    background: linear-gradient(135deg, #2e1065 0%, #1e3a5f 100%);
+}
+
+.mascot-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    flex-shrink: 0;
+}
+
+.mascot-face {
+    font-size: 3.2rem;
+    line-height: 1;
+    transition: transform 0.2s;
+    display: block;
+}
+
+.mascot-body:active .mascot-face {
+    transform: scale(1.3);
+}
+
+.mascot-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #7c3aed;
+    margin-top: 0.15rem;
+    font-family: var(--font-en);
+}
+
+/* Mascot Animations */
+@keyframes mascot-wave-anim {
+
+    0%,
+    100% {
+        transform: rotate(0);
+    }
+
+    25% {
+        transform: rotate(-15deg);
+    }
+
+    75% {
+        transform: rotate(15deg);
+    }
+}
+
+@keyframes mascot-bounce-anim {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-14px);
+    }
+}
+
+@keyframes mascot-spin-anim {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes mascot-slow-anim {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(4px);
+    }
+}
+
+.mascot-wave .mascot-face {
+    animation: mascot-wave-anim 0.6s ease 2;
+}
+
+.mascot-bounce .mascot-face {
+    animation: mascot-bounce-anim 0.5s ease 3;
+}
+
+.mascot-spin .mascot-face {
+    animation: mascot-spin-anim 0.6s ease;
+}
+
+.mascot-slow .mascot-face {
+    animation: mascot-slow-anim 1.2s ease 2;
+}
+
+/* Mascot Messages */
+.mascot-msgs {
+    flex: 1;
+}
+
+.mascot-greeting {
+    font-weight: 700;
+    font-size: 0.97rem;
+    color: var(--fg);
+    margin-bottom: 0.25rem;
+    font-family: var(--font-mr);
+}
+
+.mascot-mood {
+    font-size: 0.85rem;
+    color: var(--fg-muted);
+    margin-bottom: 0.25rem;
+    font-family: var(--font-mr);
+}
+
+.mascot-hint {
+    font-size: 0.75rem;
+    color: #7c3aed;
+    font-weight: 600;
+    font-family: var(--font-mr);
+}
+
+/* Sticker Section */
+.sticker-section {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-sm);
+    padding: 0.65rem 1rem;
+    margin-bottom: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.sticker-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--fg-muted);
+    white-space: nowrap;
+    font-family: var(--font-mr);
+}
+
+.sticker-bar {
+    display: flex;
+    gap: 0.4rem;
+    flex: 1;
+}
+
+.sticker-slot {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    border: 2px dashed var(--input-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: all var(--transition);
+    background: var(--card-bg);
+}
+
+.sticker-slot.filled {
+    border-color: #f59e0b;
+    background: #fef3c7;
+}
+
+.sticker-slot.filled:hover {
+    transform: scale(1.2);
+}
+
+.sticker-empty {
+    font-size: 1.1rem;
+    color: var(--input-border);
+}
+
+.sticker-earn-btn {
+    font-size: 0.78rem !important;
+    padding: 0.3rem 0.7rem !important;
+    white-space: nowrap;
+}
+
+/* Timer Face Row */
+.timer-face-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.8rem;
+    padding: 0.5rem 0.9rem;
+    background: var(--primary-light);
+    border-radius: var(--radius-sm);
+}
+
+.timer-face-emoji {
+    font-size: 1.6rem;
+    transition: all 0.3s ease;
+}
+
+.timer-face-label {
+    font-size: 0.8rem;
+    color: var(--primary);
+    font-weight: 600;
+    font-family: var(--font-mr);
+}
+
+/* Joke Bubble */
+.joke-bubble {
+    background: linear-gradient(135deg, #fef9c3 0%, #fef3c7 100%);
+    border-radius: var(--radius-sm);
+    border: 1px solid #fbbf24;
+    padding: 0.85rem 1rem;
+    margin-bottom: 0.8rem;
+}
+
+[data-theme="dark"] .joke-bubble {
+    background: #291f00;
+    border-color: #78350f;
+}
+
+.joke-q {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #92400e;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-mr);
+    line-height: 1.5;
+}
+
+[data-theme="dark"] .joke-q {
+    color: #fcd34d;
+}
+
+.joke-a {
+    font-size: 0.88rem;
+    color: #065f46;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-mr);
+    animation: fadeIn 0.3s ease;
+}
+
+[data-theme="dark"] .joke-a {
+    color: #6ee7b7;
+}
+
+.joke-reveal-btn {
+    background: #f59e0b;
+    color: #fff;
+    border: none;
+    padding: 0.38rem 0.9rem;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: var(--font-mr);
+    transition: background var(--transition);
+}
+
+.joke-reveal-btn:hover {
+    background: #d97706;
+}
+
+/* Mascot Action Row */
+.mascot-actions {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.4rem;
+}
+
+.mascot-action-btn {
+    flex: 1;
+    min-width: 130px;
+    font-size: 0.88rem !important;
+    font-family: var(--font-mr) !important;
+    font-weight: 700 !important;
+}
+
+/* Mini-Game Modal */
+.mini-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 8000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s;
+}
+
+.mini-modal-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.mini-modal-box {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    width: min(92vw, 380px);
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    animation: fadeIn 0.3s ease;
+}
+
+.mini-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #4f46e5, #818cf8);
+    color: #fff;
+    padding: 0.9rem 1.2rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.mini-timer-badge {
+    background: rgba(255, 255, 255, 0.25);
+    padding: 0.2rem 0.7rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.mini-qnum {
+    font-size: 0.75rem;
+    color: var(--fg-muted);
+    font-family: var(--font-en);
+    padding: 0.8rem 1.2rem 0;
+}
+
+.mini-q {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--fg);
+    padding: 0.5rem 1.2rem 0.8rem;
+    text-align: center;
+}
+
+.mini-opts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+    padding: 0 1.2rem 1.2rem;
+}
+
+.mini-opt {
+    padding: 0.75rem;
+    border-radius: var(--radius-sm);
+    border: 2px solid var(--input-border);
+    background: var(--input-bg);
+    color: var(--fg);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--transition);
+    font-family: var(--font-en);
+}
+
+.mini-opt:hover {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+.mini-opt:active {
+    transform: scale(0.95);
+}
+
+/* Mini Result */
+.mini-result {
+    text-align: center;
+    padding: 1.5rem 1.2rem;
+}
+
+.mini-result-emoji {
+    font-size: 3.5rem;
+    margin-bottom: 0.6rem;
+}
+
+.mini-result-score {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.mini-result-acc {
+    font-size: 1rem;
+    color: var(--fg-muted);
+    margin: 0.3rem 0 0.8rem;
+}
+
+.mini-result-msg {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--fg);
+    margin-bottom: 1.2rem;
+    font-family: var(--font-mr);
+}
+
+/* Mobile tweaks */
+@media (max-width: 480px) {
+    .mascot-face {
+        font-size: 2.6rem;
+    }
+
+    .mascot-greeting {
+        font-size: 0.88rem;
+    }
+
+    .sticker-slot {
+        width: 32px;
+        height: 32px;
+        font-size: 1.2rem;
+    }
+
+    .mini-q {
+        font-size: 1.1rem;
+    }
+}
+
+/* ============================================================
+   MASCOT v2 — Enhanced Animations
+   ============================================================ */
+
+/* NEW mascot expression keyframes */
+@keyframes mascot-jump-anim {
+
+    0%,
+    100% {
+        transform: translateY(0) scale(1);
+    }
+
+    30% {
+        transform: translateY(-22px) scale(1.12);
+    }
+
+    60% {
+        transform: translateY(-10px) scale(1.05) rotate(8deg);
+    }
+}
+
+@keyframes mascot-tilt-anim {
+
+    0%,
+    100% {
+        transform: rotate(0);
+    }
+
+    50% {
+        transform: rotate(-20deg);
+    }
+}
+
+@keyframes mascot-focused-anim {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.07);
+    }
+}
+
+.mascot-jump .mascot-face {
+    animation: mascot-jump-anim 0.7s ease forwards;
+}
+
+.mascot-tilt .mascot-face {
+    animation: mascot-tilt-anim 0.5s ease 2;
+}
+
+.mascot-focused .mascot-face {
+    animation: mascot-focused-anim 0.6s ease 2;
+}
+
+/* Mascot emotion badge (pop-up label beside face) */
+.mascot-badge {
+    position: absolute;
+    top: -8px;
+    right: -14px;
+    font-size: 1.1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.mascot-body {
+    position: relative;
+}
+
+/* Face blink */
+.mascot-face {
+    transition: opacity 0.1s ease;
+}
+
+/* ── Floating Emoji Background ──────────────────────────── */
+@keyframes float-up {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: translateY(-420px) scale(0.6);
+        opacity: 0;
+    }
+}
+
+.float-emoji {
+    position: absolute;
+    bottom: 0;
+    pointer-events: auto;
+    cursor: pointer;
+    animation: float-up linear forwards;
+    z-index: 0;
+    user-select: none;
+    transition: transform 0.1s;
+}
+
+.float-emoji:hover {
+    transform: scale(1.5) rotate(15deg);
+}
+
+/* Smart Hub needs relative positioning for float emojis */
+#smart-hub {
+    position: relative;
+    overflow: hidden;
+}
+
+/* ── Sparkle Particles ───────────────────────────────────── */
+@keyframes sparkle-fly {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(var(--dx), var(--dy)) scale(0);
+        opacity: 0;
+    }
+}
+
+.sparkle-particle {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: gold;
+    z-index: 9998;
+    pointer-events: none;
+    animation: sparkle-fly 0.65s ease-out forwards;
+}
+
+/* ── Typing Quote Bubble ─────────────────────────────────── */
+@keyframes bubble-pop {
+    0% {
+        transform: scale(0) translateY(8px);
+        opacity: 0;
+    }
+
+    70% {
+        transform: scale(1.07) translateY(-2px);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+.quote-bubble {
+    position: relative;
+    background: linear-gradient(135deg, #4f46e5, #818cf8);
+    color: #fff;
+    border-radius: 16px;
+    padding: 0.8rem 1.1rem;
+    margin: 0.3rem 0 0.4rem;
+    min-height: 2.4rem;
+    font-family: var(--font-mr);
+    font-size: 0.92rem;
+    font-weight: 600;
+    display: none;
+    line-height: 1.5;
+    z-index: 2;
+}
+
+.quote-bubble.show {
+    display: block;
+    animation: bubble-pop 0.4s cubic-bezier(.15, 1.3, .6, 1) forwards;
+}
+
+.quote-tail {
+    position: absolute;
+    bottom: -10px;
+    left: 24px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 12px solid #4f46e5;
+}
+
+.quote-trigger-btn {
+    font-size: 0.8rem !important;
+    padding: 0.3rem 0.8rem !important;
+    margin-bottom: 0.8rem;
+    font-family: var(--font-mr) !important;
+}
+
+/* ── Magic Button ────────────────────────────────────────── */
+@keyframes magic-pulse-kf {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.5);
+    }
+
+    50% {
+        box-shadow: 0 0 0 10px rgba(99, 102, 241, 0);
+    }
+}
+
+@keyframes magic-ripple-kf {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.6);
+    }
+
+    60% {
+        transform: scale(1.04);
+        box-shadow: 0 0 0 14px rgba(255, 255, 255, 0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.magic-btn {
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.magic-btn.magic-pulse {
+    animation: magic-pulse-kf 2s ease infinite;
+}
+
+.magic-btn.magic-click {
+    animation: magic-ripple-kf 0.55s ease forwards;
+}
+
+/* ── Sticker New-Unlock Animation ────────────────────────── */
+@keyframes sticker-land {
+    0% {
+        transform: scale(0) rotate(-180deg);
+        opacity: 0;
+    }
+
+    60% {
+        transform: scale(1.25) rotate(10deg);
+        opacity: 1;
+    }
+
+    80% {
+        transform: scale(0.9) rotate(-5deg);
+    }
+
+    100% {
+        transform: scale(1) rotate(0);
+        opacity: 1;
+    }
+}
+
+@keyframes sticker-shine {
+
+    0%,
+    100% {
+        filter: brightness(1);
+    }
+
+    50% {
+        filter: brightness(1.7) saturate(1.4);
+    }
+}
+
+.sticker-slot.sticker-new .sticker-glyph {
+    display: block;
+    animation: sticker-land 0.6s cubic-bezier(.15, 1.2, .5, 1) forwards,
+        sticker-shine 0.8s ease 0.6s 2;
+}
+
+/* Sticker slot filled in dark mode */
+[data-theme="dark"] .sticker-slot.filled {
+    background: #451a03;
+}
+
+/* ── Mascot Row (tap feedback) ───────────────────────────── */
+.mascot-row {
+    user-select: none;
+}
+
+.mascot-row:active {
+    transform: scale(0.98);
+}
+
+/* ── Timer Face Label ────────────────────────────────────── */
+#timer-face-label {
+    transition: all 0.4s ease;
+}
+
+#timer-face-emoji {
+    transition: all 0.5s ease;
+    display: inline-block;
+}
+
+/* ── Loading Runner (for future use) ────────────────────── */
+@keyframes runner-run {
+    0% {
+        transform: translateX(-60px);
+    }
+
+    100% {
+        transform: translateX(calc(100vw + 60px));
+    }
+}
+
+@keyframes runner-bob {
+
+    0%,
+    100% {
+        margin-bottom: 0;
+    }
+
+    50% {
+        margin-bottom: 6px;
+    }
+}
+
+.fun-loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+.fun-loader-runner {
+    font-size: 2rem;
+    animation: runner-bob 0.4s ease infinite;
+    display: inline-block;
+}
+
+.fun-loader-text {
+    font-family: var(--font-mr);
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-top: 0.8rem;
+}
+
+.fun-loader-dots span {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--primary);
+    margin: 0 3px;
+    animation: mascot-bounce-anim 0.6s ease infinite;
+}
+
+.fun-loader-dots span:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.fun-loader-dots span:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+/* Mobile */
+@media (max-width:480px) {
+    .quote-bubble {
+        font-size: 0.85rem;
+    }
+
+    .magic-btn {
+        font-size: 0.82rem !important;
+    }
+}
+
+/* ── Voice Toggle Button ─────────────────────────────────── */
+.voice-toggle-btn {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-mr) !important;
+}
+
+.vtog-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.vtog-on {
+    background: #10b981;
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
+}
+
+.vtog-off {
+    background: #6b7280;
+}
+
+@keyframes vtog-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5);
+    }
+
+    50% {
+        box-shadow: 0 0 0 5px rgba(16, 185, 129, 0);
+    }
+}
+
+.vtog-on {
+    animation: vtog-pulse 2s ease infinite;
 }
